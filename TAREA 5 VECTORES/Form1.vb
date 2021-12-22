@@ -7,6 +7,7 @@
     Public VTarifa(10) As String
     Public fila As Byte = 0
     Public total As Double = 0
+    Public mora As Double = 0
     Sub limpiar_vectores()
         Me.DataGridView1.Rows.Clear()
         fila = 0
@@ -61,7 +62,7 @@
             MsgBox("Los datos fueron registrados con exito")
             ''-----------------------------------------'''
             If Val(TextBox3.Text) > 0 Then
-
+                mora = Val(TextBox3.Text) * 0.02
             End If
 
             ''-----------------------------------------'''
@@ -90,10 +91,12 @@
             ''-----------------------------------------'''
             Select Case ComboBox2.Text
                 Case "Social"
-                    total = total - (total * 0.2)
+                    total = total - (total * 0.2) + mora + Val(TextBox3.Text)
                 Case "No Social"
-                    total = total - (total * 0.1)
+                    total = total - (total * 0.1) + mora + Val(TextBox3.Text)
             End Select
+
+            Me.TxtB_Total.Text = total
 
         End If
         If (fila = 10) Then
