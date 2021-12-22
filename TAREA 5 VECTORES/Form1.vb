@@ -8,17 +8,21 @@
     Public fila As Byte = 0
     Public total As Double = 0
     Public mora As Double = 0
+    Public ii As Integer = 0
+    Public iii As Integer = 0
     Sub limpiar_vectores()
         Me.DataGridView1.Rows.Clear()
         fila = 0
-        For I = 0 To 9
-            VNombre(I) = Nothing
-            VNit(I) = Nothing
-            VSaldo(I) = Nothing
-            VConsumo(I) = Nothing
-            VServicio(I) = Nothing
-            VTarifa(I) = Nothing
-        Next I
+        While ii < 10
+            VNombre(ii) = Nothing
+            VNit(ii) = Nothing
+            VSaldo(ii) = Nothing
+            VConsumo(ii) = Nothing
+            VServicio(ii) = Nothing
+            VTarifa(ii) = Nothing
+            ii = ii + 1
+            fila = 0
+        End While
     End Sub
     Sub salir()
         If MsgBox("¿Desea Salir?", vbQuestion + vbYesNo, "Mensaje Salida") = vbYes Then
