@@ -6,6 +6,7 @@
     Public VServicio(10) As String
     Public VTarifa(10) As String
     Public fila As Byte = 0
+    Public total As Double = 0
     Sub limpiar_vectores()
         Me.DataGridView1.Rows.Clear()
         fila = 0
@@ -56,12 +57,53 @@
             VServicio(fila) = ComboBox1.Text
             VTarifa(fila) = ComboBox2.Text
             fila = fila + 1
-            limpiar_entradas()
+            Debug.Print(ComboBox1.Text)
             MsgBox("Los datos fueron registrados con exito")
+            ''-----------------------------------------'''
+            If Val(TextBox3.Text) > 0 Then
+
+            End If
+
+            ''-----------------------------------------'''
+            Select Case ComboBox1.Text
+                Case "Residencial"
+                    If Val(TextBox4.Text) > 0 And Val(TextBox4.Text) < 101 Then
+                        total = Val(TextBox4.Text) * 0.99
+                    ElseIf Val(TextBox4.Text) >= 101 And Val(TextBox4.Text) < 300 Then
+                        total = Val(TextBox4.Text) * 1.2
+
+                    ElseIf Val(TextBox4.Text) >= 301 Then
+                        total = Val(TextBox4.Text) * 3
+                    End If
+
+                Case "Industrial"
+                    If Val(TextBox4.Text) > 0 And Val(TextBox4.Text) < 101 Then
+                        total = Val(TextBox4.Text) * 1.99
+                    ElseIf Val(TextBox4.Text) >= 101 And Val(TextBox4.Text) < 300 Then
+                        total = Val(TextBox4.Text) * 2.2
+
+                    ElseIf Val(TextBox4.Text) >= 301 Then
+                        total = Val(TextBox4.Text) * 4
+                    End If
+
+            End Select
+            ''-----------------------------------------'''
+            Select Case ComboBox2.Text
+                Case "Social"
+                    total = total - (total * 0.2)
+                Case "No Social"
+                    total = total - (total * 0.1)
+            End Select
+
         End If
         If (fila = 10) Then
             MsgBox("Vectores llenos")
         End If
+
+
+
+
+
     End Sub
 
     Private Sub ToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem2.Click
